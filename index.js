@@ -14,13 +14,17 @@ canvasContext.fillRect(
 );
 
 class Sprite {
-  constructor(position) {
+  // take in all params as 1 obj
+  // destructures
+  constructor({ position, velocity }) {
     this.position = position;
+    this.velocity = velocity;
   }
 
   draw() {
     // color
     canvasContext.fillStyle = "red";
+
     // dimensions and coors
     canvasContext.fillRect(
       (x = this.position.x),
@@ -32,17 +36,40 @@ class Sprite {
 }
 
 const player = new Sprite({
-  x: 0,
-  y: 0,
+  position: {
+    x: 0,
+    y: 0,
+  },
+
+  // player not moving by default
+  velocity: {
+    x: 0,
+    y: 0,
+  },
 });
 
 player.draw();
 
 const enemy = new Sprite({
-  x: 400,
-  y: 100,
+  position: {
+    x: 400,
+    y: 100,
+  },
+
+  velocity: {
+    x: 0,
+    y: 0,
+  },
 });
 
 enemy.draw();
 
 console.log(player);
+
+function animate() {
+  // which func to call over and over? Animate, b/c we want constant animation
+  window.requestAnimationFrame(animate);
+  console.log("l");
+}
+
+// animate();
