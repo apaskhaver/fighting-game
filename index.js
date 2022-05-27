@@ -22,7 +22,7 @@ class Sprite {
   }
 
   draw() {
-    // color
+    // color for rect to draw
     canvasContext.fillStyle = "red";
 
     // dimensions and coors
@@ -32,6 +32,13 @@ class Sprite {
       (w = 50),
       (h = 150)
     );
+  }
+
+  update() {
+    this.draw();
+
+    // make sprite fall
+    this.position.y += 10;
   }
 }
 
@@ -48,8 +55,6 @@ const player = new Sprite({
   },
 });
 
-player.draw();
-
 const enemy = new Sprite({
   position: {
     x: 400,
@@ -62,14 +67,24 @@ const enemy = new Sprite({
   },
 });
 
-enemy.draw();
-
 console.log(player);
 
+// what to do in every frame of animation loop
 function animate() {
-  // which func to call over and over? Animate, b/c we want constant animation
   window.requestAnimationFrame(animate);
-  console.log("l");
+
+  // how large of rect to refill? Whole screen.
+  // prevents "paint drip" effect of obj moving
+  canvasContext.fillStyle = "black";
+  canvasContext.fillRect(
+    (x = 0),
+    (y = 0),
+    (w = canvas.width),
+    (h = canvas.height)
+  );
+
+  player.update();
+  enemy.update();
 }
 
-// animate();
+animate();
