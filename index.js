@@ -13,6 +13,8 @@ canvasContext.fillRect(
   (h = canvas.height)
 );
 
+const gravity = 0.2;
+
 class Sprite {
   // take in all params as 1 obj
   // destructures
@@ -39,11 +41,16 @@ class Sprite {
     this.draw();
 
     // make sprite fall by adding its velocity to its position
+    // due to gravity, velocity increases exponentially
     this.position.y += this.velocity.y;
 
     // stops falling when sprite's feet are at bottom of canvas
     if (this.position.y + this.height + this.velocity.y >= canvas.height) {
       this.velocity.y = 0;
+    } else {
+      // make sprite fall faster by adding gravity so long as
+      // sprite is not at bottom of canvas
+      this.velocity.y += gravity;
     }
   }
 }
@@ -57,7 +64,7 @@ const player = new Sprite({
   // player not moving by default
   velocity: {
     x: 0,
-    y: 10,
+    y: 0,
   },
 });
 
