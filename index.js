@@ -26,7 +26,7 @@ class Sprite {
       (x = this.position.x),
       (y = this.position.y),
       (w = 50),
-      (h = 50)
+      (h = 150)
     );
   }
 }
@@ -35,5 +35,14 @@ const player = new Sprite({
   x: 0,
   y: 0,
 });
+
 player.draw();
+
+const enemy = new Sprite({
+  x: 400,
+  y: 100,
+});
+
+enemy.draw();
+
 console.log(player);
