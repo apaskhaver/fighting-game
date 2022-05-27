@@ -19,6 +19,7 @@ class Sprite {
   constructor({ position, velocity }) {
     this.position = position;
     this.velocity = velocity;
+    this.height = 150;
   }
 
   draw() {
@@ -30,15 +31,20 @@ class Sprite {
       (x = this.position.x),
       (y = this.position.y),
       (w = 50),
-      (h = 150)
+      (h = this.height)
     );
   }
 
   update() {
     this.draw();
 
-    // make sprite fall
-    this.position.y += 10;
+    // make sprite fall by adding its velocity to its position
+    this.position.y += this.velocity.y;
+
+    // stops falling when sprite's feet are at bottom of canvas
+    if (this.position.y + this.height + this.velocity.y >= canvas.height) {
+      this.velocity.y = 0;
+    }
   }
 }
 
@@ -51,7 +57,7 @@ const player = new Sprite({
   // player not moving by default
   velocity: {
     x: 0,
-    y: 0,
+    y: 10,
   },
 });
 
