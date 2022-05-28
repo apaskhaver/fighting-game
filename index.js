@@ -101,3 +101,8 @@ function animate() {
 }
 
 animate();
+
+// listen for key being pressed
+window.addEventListener("keydown", (event) => {
+  console.log(event);
+});
