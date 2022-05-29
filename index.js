@@ -40,6 +40,9 @@ class Sprite {
   update() {
     this.draw();
 
+    // move left by adjusting position x by velocity x
+    this.position.x += this.velocity.x;
+
     // make sprite fall by adding its velocity to its position
     // due to gravity, velocity increases exponentially
     this.position.y += this.velocity.y;
@@ -102,7 +105,26 @@ function animate() {
 
 animate();
 
-// listen for key being pressed
+// listen for key being pressed down
 window.addEventListener("keydown", (event) => {
-  console.log(event);
+  switch (event.key) {
+    case "d":
+      player.velocity.x = 1;
+      break;
+    case "a":
+      player.velocity.x = -1;
+      break;
+  }
+});
+
+// listen for key being lifted
+window.addEventListener("keyup", (event) => {
+  switch (event.key) {
+    case "d":
+      player.velocity.x = 0;
+      break;
+    case "a":
+      player.velocity.x = 0;
+      break;
+  }
 });
