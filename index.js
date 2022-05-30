@@ -85,6 +85,15 @@ const enemy = new Sprite({
 
 console.log(player);
 
+const keys = {
+  a: {
+    pressed: false,
+  },
+  d: {
+    pressed: false,
+  },
+};
+
 // what to do in every frame of animation loop
 function animate() {
   window.requestAnimationFrame(animate);
@@ -101,6 +110,15 @@ function animate() {
 
   player.update();
   enemy.update();
+
+  // setting velocity to 0 prevents sliding when key pressed
+  player.velocity.x = 0;
+
+  if (keys.a.pressed) {
+    player.velocity.x = -1;
+  } else if (keys.d.pressed) {
+    player.velocity.x = 1;
+  }
 }
 
 animate();
@@ -109,10 +127,10 @@ animate();
 window.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "d":
-      player.velocity.x = 1;
+      keys.d.pressed = true;
       break;
     case "a":
-      player.velocity.x = -1;
+      keys.a.pressed = true;
       break;
   }
 });
@@ -121,10 +139,10 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
   switch (event.key) {
     case "d":
-      player.velocity.x = 0;
+      keys.d.pressed = false;
       break;
     case "a":
-      player.velocity.x = 0;
+      keys.a.pressed = false;
       break;
   }
 });
