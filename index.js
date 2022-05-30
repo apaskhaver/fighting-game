@@ -212,6 +212,17 @@ function animate() {
     player.isAttacking = false;
     console.log("Boom!");
   }
+
+  if (
+    rectangularCollision({
+      rectangle1: enemy,
+      rectangle2: player,
+    }) &&
+    enemy.isAttacking
+  ) {
+    enemy.isAttacking = false;
+    console.log("Blast!");
+  }
 }
 
 animate();
@@ -246,6 +257,9 @@ window.addEventListener("keydown", (event) => {
       break;
     case "ArrowUp":
       enemy.velocity.y = -20;
+      break;
+    case "ArrowDown":
+      enemy.attack();
       break;
   }
 });
