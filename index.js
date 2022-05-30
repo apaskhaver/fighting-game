@@ -21,6 +21,7 @@ class Sprite {
     this.position = position;
     this.velocity = velocity;
     this.height = 150;
+    this.width = 50;
     this.lastKeyPressed = "";
     this.attackBox = {
       // attack box position follows player
@@ -39,7 +40,7 @@ class Sprite {
     canvasContext.fillRect(
       (x = this.position.x),
       (y = this.position.y),
-      (w = 50),
+      (w = this.width),
       (h = this.height)
     );
 
@@ -157,6 +158,16 @@ function animate() {
     enemy.velocity.x = -4;
   } else if (keys.ArrowRight.pressed && enemy.lastKeyPressed === "ArrowRight") {
     enemy.velocity.x = 4;
+  }
+
+  // detect for collisions
+  if (
+    player.attackBox.position.x + player.attackBox.width >= enemy.position.x &&
+    player.attackBox.position.x <= enemy.position.x + enemy.width &&
+    player.attackBox.position.y + player.attackBox.height >= enemy.position.y &&
+    player.attackBox.position.y <= enemy.position.y + enemy.height
+  ) {
+    console.log("Boom!");
   }
 }
 
