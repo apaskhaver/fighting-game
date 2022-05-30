@@ -50,16 +50,16 @@ class Sprite {
       (h = this.height)
     );
 
-    // if (this.isAttacking) {
-    // attack box
-    canvasContext.fillStyle = "green";
-    canvasContext.fillRect(
-      (x = this.attackBox.position.x),
-      (y = this.attackBox.position.y),
-      (w = this.attackBox.width),
-      (h = this.attackBox.height)
-    );
-    // }
+    if (this.isAttacking) {
+      // attack box
+      canvasContext.fillStyle = "green";
+      canvasContext.fillRect(
+        (x = this.attackBox.position.x),
+        (y = this.attackBox.position.y),
+        (w = this.attackBox.width),
+        (h = this.attackBox.height)
+      );
+    }
   }
 
   update() {
