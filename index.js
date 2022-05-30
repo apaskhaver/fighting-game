@@ -16,18 +16,24 @@ canvasContext.fillRect(
 const gravity = 0.7;
 
 class Sprite {
-  // take in all params as 1 obj
-  // destructures
-  constructor({ position, velocity }) {
+  // take in all params as 1 obj and destructures
+  constructor({ position, velocity, color = "red" }) {
     this.position = position;
     this.velocity = velocity;
     this.height = 150;
     this.lastKeyPressed = "";
+    this.attackBox = {
+      // attack box position follows player
+      position: this.position,
+      width: 100,
+      height: 50,
+    };
+    this.color = color;
   }
 
   draw() {
     // color for rect to draw
-    canvasContext.fillStyle = "red";
+    canvasContext.fillStyle = this.color;
 
     // dimensions and coors
     canvasContext.fillRect(
@@ -35,6 +41,15 @@ class Sprite {
       (y = this.position.y),
       (w = 50),
       (h = this.height)
+    );
+
+    // attack box
+    canvasContext.fillStyle = "green";
+    canvasContext.fillRect(
+      (x = this.attackBox.position.x),
+      (y = this.attackBox.position.y),
+      (w = this.attackBox.width),
+      (h = this.attackBox.height)
     );
   }
 
@@ -82,6 +97,8 @@ const enemy = new Sprite({
     x: 0,
     y: 0,
   },
+
+  color: "blue",
 });
 
 console.log(player);
