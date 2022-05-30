@@ -107,8 +107,6 @@ const keys = {
   },
 };
 
-let lastKeyPressed = "";
-
 // what to do in every frame of animation loop
 function animate() {
   window.requestAnimationFrame(animate);
