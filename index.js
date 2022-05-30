@@ -30,6 +30,7 @@ class Sprite {
       height: 50,
     };
     this.color = color;
+    this.isAttacking = false;
   }
 
   draw() {
@@ -44,14 +45,16 @@ class Sprite {
       (h = this.height)
     );
 
-    // attack box
-    canvasContext.fillStyle = "green";
-    canvasContext.fillRect(
-      (x = this.attackBox.position.x),
-      (y = this.attackBox.position.y),
-      (w = this.attackBox.width),
-      (h = this.attackBox.height)
-    );
+    if (this.isAttacking) {
+      // attack box
+      canvasContext.fillStyle = "green";
+      canvasContext.fillRect(
+        (x = this.attackBox.position.x),
+        (y = this.attackBox.position.y),
+        (w = this.attackBox.width),
+        (h = this.attackBox.height)
+      );
+    }
   }
 
   update() {
@@ -72,6 +75,15 @@ class Sprite {
       // sprite is not at bottom of canvas
       this.velocity.y += gravity;
     }
+  }
+
+  attack() {
+    this.isAttacking = true;
+
+    // attack cooldown of 100 ms
+    setTimeout(() => {
+      this.isAttacking = false;
+    }, 100);
   }
 }
 
@@ -160,13 +172,15 @@ function animate() {
     enemy.velocity.x = 4;
   }
 
-  // detect for collisions
+  // detect for collisions and attack state
   if (
     player.attackBox.position.x + player.attackBox.width >= enemy.position.x &&
     player.attackBox.position.x <= enemy.position.x + enemy.width &&
     player.attackBox.position.y + player.attackBox.height >= enemy.position.y &&
-    player.attackBox.position.y <= enemy.position.y + enemy.height
+    player.attackBox.position.y <= enemy.position.y + enemy.height &&
+    player.isAttacking
   ) {
+    player.isAttacking = false;
     console.log("Boom!");
   }
 }
@@ -187,6 +201,9 @@ window.addEventListener("keydown", (event) => {
       break;
     case "w":
       player.velocity.y = -20;
+      break;
+    case " ":
+      player.attack();
       break;
 
     // enemy keys
