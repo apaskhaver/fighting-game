@@ -92,7 +92,12 @@ const keys = {
   d: {
     pressed: false,
   },
+  w: {
+    pressed: false,
+  },
 };
+
+let lastKeyPressed = "";
 
 // what to do in every frame of animation loop
 function animate() {
@@ -114,9 +119,9 @@ function animate() {
   // setting velocity to 0 prevents sliding when key pressed
   player.velocity.x = 0;
 
-  if (keys.a.pressed) {
+  if (keys.a.pressed && lastKeyPressed === "a") {
     player.velocity.x = -1;
-  } else if (keys.d.pressed) {
+  } else if (keys.d.pressed && lastKeyPressed === "d") {
     player.velocity.x = 1;
   }
 }
@@ -128,9 +133,14 @@ window.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "d":
       keys.d.pressed = true;
+      lastKeyPressed = "d";
       break;
     case "a":
       keys.a.pressed = true;
+      lastKeyPressed = "a";
+      break;
+    case "w":
+      player.velocity.y = -10;
       break;
   }
 });
@@ -143,6 +153,9 @@ window.addEventListener("keyup", (event) => {
       break;
     case "a":
       keys.a.pressed = false;
+      break;
+    case "w":
+      keys.w.pressed = false;
       break;
   }
 });
