@@ -154,15 +154,14 @@ const keys = {
   },
 };
 
-function rectangularCollision({ rectangle1, rectangle2 }) {
+function rectangularCollision({ attacker, beingHit }) {
   return (
-    rectangle1.attackBox.position.x + rectangle1.attackBox.width >=
-      rectangle2.position.x &&
-    rectangle1.attackBox.position.x <=
-      rectangle2.position.x + rectangle2.width &&
-    rectangle1.attackBox.position.y + rectangle1.attackBox.height >=
-      rectangle2.position.y &&
-    rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
+    attacker.attackBox.position.x + attacker.attackBox.width >=
+      beingHit.position.x &&
+    attacker.attackBox.position.x <= beingHit.position.x + beingHit.width &&
+    attacker.attackBox.position.y + attacker.attackBox.height >=
+      beingHit.position.y &&
+    attacker.attackBox.position.y <= beingHit.position.y + beingHit.height
   );
 }
 
@@ -204,8 +203,8 @@ function animate() {
   // detect for collisions and attack state
   if (
     rectangularCollision({
-      rectangle1: player,
-      rectangle2: enemy,
+      attacker: player,
+      beingHit: enemy,
     }) &&
     player.isAttacking
   ) {
@@ -215,8 +214,8 @@ function animate() {
 
   if (
     rectangularCollision({
-      rectangle1: enemy,
-      rectangle2: player,
+      attacker: enemy,
+      beingHit: player,
     }) &&
     enemy.isAttacking
   ) {
