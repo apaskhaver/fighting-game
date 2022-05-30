@@ -24,8 +24,12 @@ class Sprite {
     this.width = 50;
     this.lastKeyPressed = "";
     this.attackBox = {
-      // attack box position follows player
-      position: this.position,
+      // attack box position doesn't follow player, values left as assigned initially
+      // must update in update()
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+      },
       width: 100,
       height: 50,
     };
@@ -45,20 +49,22 @@ class Sprite {
       (h = this.height)
     );
 
-    if (this.isAttacking) {
-      // attack box
-      canvasContext.fillStyle = "green";
-      canvasContext.fillRect(
-        (x = this.attackBox.position.x),
-        (y = this.attackBox.position.y),
-        (w = this.attackBox.width),
-        (h = this.attackBox.height)
-      );
-    }
+    // if (this.isAttacking) {
+    // attack box
+    canvasContext.fillStyle = "green";
+    canvasContext.fillRect(
+      (x = this.attackBox.position.x),
+      (y = this.attackBox.position.y),
+      (w = this.attackBox.width),
+      (h = this.attackBox.height)
+    );
+    // }
   }
 
   update() {
     this.draw();
+    this.attackBox.position.x = this.position.x;
+    this.attackBox.position.y = this.position.y;
 
     // move left by adjusting position x by velocity x
     this.position.x += this.velocity.x;
