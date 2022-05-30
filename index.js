@@ -13,7 +13,7 @@ canvasContext.fillRect(
   (h = canvas.height)
 );
 
-const gravity = 0.2;
+const gravity = 0.7;
 
 class Sprite {
   // take in all params as 1 obj
@@ -130,16 +130,16 @@ function animate() {
 
   // player movement
   if (keys.a.pressed && player.lastKeyPressed === "a") {
-    player.velocity.x = -1;
+    player.velocity.x = -4;
   } else if (keys.d.pressed && player.lastKeyPressed === "d") {
-    player.velocity.x = 1;
+    player.velocity.x = 4;
   }
 
   // enemy movement
   if (keys.ArrowLeft.pressed && enemy.lastKeyPressed === "ArrowLeft") {
-    enemy.velocity.x = -1;
+    enemy.velocity.x = -4;
   } else if (keys.ArrowRight.pressed && enemy.lastKeyPressed === "ArrowRight") {
-    enemy.velocity.x = 1;
+    enemy.velocity.x = 4;
   }
 }
 
