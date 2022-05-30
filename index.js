@@ -131,9 +131,9 @@ function animate() {
   enemy.velocity.x = 0;
 
   // player movement
-  if (keys.a.pressed && lastKeyPressed === "a") {
+  if (keys.a.pressed && player.lastKeyPressed === "a") {
     player.velocity.x = -1;
-  } else if (keys.d.pressed && lastKeyPressed === "d") {
+  } else if (keys.d.pressed && player.lastKeyPressed === "d") {
     player.velocity.x = 1;
   }
 
@@ -153,11 +153,11 @@ window.addEventListener("keydown", (event) => {
     // player keys
     case "d":
       keys.d.pressed = true;
-      lastKeyPressed = "d";
+      player.lastKeyPressed = "d";
       break;
     case "a":
       keys.a.pressed = true;
-      lastKeyPressed = "a";
+      player.lastKeyPressed = "a";
       break;
     case "w":
       player.velocity.y = -10;
