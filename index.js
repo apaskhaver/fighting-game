@@ -158,7 +158,7 @@ window.addEventListener("keydown", (event) => {
       player.lastKeyPressed = "a";
       break;
     case "w":
-      player.velocity.y = -10;
+      player.velocity.y = -20;
       break;
 
     // enemy keys
@@ -171,7 +171,7 @@ window.addEventListener("keydown", (event) => {
       enemy.lastKeyPressed = "ArrowLeft";
       break;
     case "ArrowUp":
-      enemy.velocity.y = -10;
+      enemy.velocity.y = -20;
       break;
   }
 });
