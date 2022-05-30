@@ -128,6 +128,7 @@ function animate() {
 
   // setting velocity to 0 prevents sliding when key pressed
   player.velocity.x = 0;
+  enemy.velocity.x = 0;
 
   // player movement
   if (keys.a.pressed && lastKeyPressed === "a") {
