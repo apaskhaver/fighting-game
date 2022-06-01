@@ -166,6 +166,18 @@ function rectangularCollision({ attacker, beingHit }) {
   );
 }
 
+let timer = 10;
+function decreaseTimer() {
+  // setTimeOut keeps calling the function w/ a second pause
+  if (timer > 0) {
+    setTimeout(decreaseTimer, 1000);
+    timer--;
+    document.querySelector("#timer").innerHTML = timer;
+  }
+}
+
+decreaseTimer();
+
 // what to do in every frame of animation loop
 function animate() {
   window.requestAnimationFrame(animate);
