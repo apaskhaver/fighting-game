@@ -36,6 +36,7 @@ class Sprite {
     };
     this.color = color;
     this.isAttacking = false;
+    this.health = 100;
   }
 
   draw() {
@@ -209,7 +210,9 @@ function animate() {
     player.isAttacking
   ) {
     player.isAttacking = false;
-    document.querySelector("#enemyHealth").style.width = "20%";
+    enemy.health -= 20;
+    // health rendered as 80%, 60%, 40% ... of whole bar
+    document.querySelector("#enemyHealth").style.width = enemy.health + "%";
     console.log("Boom!");
   }
 
