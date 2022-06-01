@@ -1,14 +1,30 @@
 <body>
-  <div>
+  <!-- red container div -->
+  <div style="position: relative">
     <!-- overall health bar -->
-    <div>
+    <div
+      style="
+        position: absolute;
+        display: flex;
+        width: 100%;
+        align-items: center;
+      "
+    >
       <!-- player health -->
-      <div style="background-color: yellow; height: 30px; width: 100px"></div>
+      <div style="background-color: yellow; height: 30px; width: 100%"></div>
 
       <!-- timer -->
-      <div></div>
+      <div
+        style="
+          background-color: red;
+          height: 100px;
+          width: 100px;
+          flex-shrink: 0;
+        "
+      ></div>
 
       <!-- enemy health -->
+      <div style="background-color: yellow; height: 30px; width: 100%"></div>
       <div></div>
     </div>
     <canvas></canvas>
