@@ -176,8 +176,19 @@ function decreaseTimer() {
   }
 
   // game over
-  if (player.health === enemy.health) {
-    console.log("tie!");
+  if (timer === 0) {
+    // need to change display from none to flex for the div to render in index.html
+    document.querySelector("#displayGameOverText").style.display = "flex";
+
+    if (player.health === enemy.health) {
+      document.querySelector("#displayGameOverText").innerHTML = "Tie!";
+    } else if (player.health > enemy.health) {
+      document.querySelector("#displayGameOverText").innerHTML =
+        "Player 1 wins!";
+    } else if (enemy.health > player.health) {
+      document.querySelector("#displayGameOverText").innerHTML =
+        "Player 2 wins!";
+    }
   }
 }
 
