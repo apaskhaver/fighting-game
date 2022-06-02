@@ -166,7 +166,7 @@ function rectangularCollision({ attacker, beingHit }) {
   );
 }
 
-let timer = 10;
+let timer = 60;
 function decreaseTimer() {
   // setTimeOut keeps calling the function w/ a second pause
   if (timer > 0) {
