@@ -16,6 +16,20 @@ canvasContext.fillRect(
 const gravity = 0.7;
 
 class Sprite {
+  constructor({ position }) {
+    this.position = position;
+    this.height = 150;
+    this.width = 50;
+  }
+
+  draw() {}
+
+  update() {
+    this.draw();
+  }
+}
+
+class Fighter {
   // take in all params as 1 obj and destructures
   constructor({ position, velocity, color = "red", offset }) {
     this.position = position;
