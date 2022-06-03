@@ -33,7 +33,7 @@ class Sprite {
 
   update() {
     this.draw();
-    if (this.currentFrame < this.maxFramesInImage) {
+    if (this.currentFrame < this.maxFramesInImage - 1) {
       this.currentFrame++;
     } else {
       this.currentFrame = 0;
