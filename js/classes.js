@@ -1,5 +1,11 @@
 class Sprite {
-  constructor({ position, imageSource, scale = 1, maxFramesInImage = 1 }) {
+  constructor({
+    position,
+    imageSource,
+    scale = 1,
+    maxFramesInImage = 1,
+    currentFrame = 0,
+  }) {
     this.position = position;
     this.height = 150;
     this.width = 50;
@@ -8,12 +14,13 @@ class Sprite {
     this.image.src = imageSource;
     this.scale = scale;
     this.maxFramesInImage = maxFramesInImage;
+    this.currentFrame = currentFrame;
   }
 
   draw() {
     canvasContext.drawImage(
       this.image,
-      0, // crop location
+      this.currentFrame * (this.image.width / this.maxFramesInImage), // crop location
       0, // crop location
       this.image.width / this.maxFramesInImage, // crop location, width / number of frames
       this.image.height, // crop location
