@@ -1,5 +1,11 @@
 class Sprite {
-  constructor({ position, imageSource, scale = 1, maxFramesInImage = 1 }) {
+  constructor({
+    position,
+    imageSource,
+    scale = 1,
+    maxFramesInImage = 1,
+    offset = { x: 0, y: 0 },
+  }) {
     this.position = position;
     this.height = 150;
     this.width = 50;
@@ -11,6 +17,7 @@ class Sprite {
     this.framesElapsed = 0;
     this.framesHold = 10;
     this.currentFrame = 0;
+    this.offset = offset;
   }
 
   draw() {
@@ -20,8 +27,8 @@ class Sprite {
       0, // crop location
       this.image.width / this.maxFramesInImage, // crop location, width / number of frames
       this.image.height, // crop location
-      this.position.x,
-      this.position.y,
+      this.position.x - this.offset.x,
+      this.position.y - this.offset.y,
       (this.image.width / this.maxFramesInImage) * this.scale,
       this.image.height * this.scale
     );
@@ -47,12 +54,12 @@ class Fighter extends Sprite {
     position,
     velocity,
     color = "red",
-    offset,
     imageSource,
     scale = 1,
     maxFramesInImage = 1,
+    offset = { x: 0, y: 0 },
   }) {
-    super({ position, imageSource, scale, maxFramesInImage });
+    super({ position, imageSource, scale, maxFramesInImage, offset });
     this.velocity = velocity;
     this.height = 150;
     this.width = 50;
