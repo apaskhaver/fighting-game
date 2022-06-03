@@ -21,6 +21,18 @@ const background = new Sprite({
     y: 0,
   },
   imageSource: "./img/background.png",
+  scale: 1,
+  maxFramesInImage: 1,
+});
+
+const shop = new Sprite({
+  position: {
+    x: 600,
+    y: 128,
+  },
+  imageSource: "./img/shop.png",
+  scale: 2.75,
+  maxFramesInImage: 6,
 });
 
 const player = new Fighter({
@@ -101,6 +113,7 @@ function animate() {
 
   // want background to render first so it doesn't cover players
   background.update();
+  shop.update();
   player.update();
   enemy.update();
 

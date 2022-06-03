@@ -1,19 +1,49 @@
 class Sprite {
-  constructor({ position, imageSource }) {
+  constructor({
+    position,
+    imageSource,
+    scale = 1,
+    maxFramesInImage = 1,
+    currentFrame = 0,
+  }) {
     this.position = position;
     this.height = 150;
     this.width = 50;
     // creates a new HTML image inside the JS property this.image
     this.image = new Image();
     this.image.src = imageSource;
+    this.scale = scale;
+    this.maxFramesInImage = maxFramesInImage;
+    this.currentFrame = currentFrame;
+    this.framesElapsed = 0;
+    this.framesHold = 10;
   }
 
   draw() {
-    canvasContext.drawImage(this.image, this.position.x, this.position.y);
+    canvasContext.drawImage(
+      this.image,
+      this.currentFrame * (this.image.width / this.maxFramesInImage), // crop location
+      0, // crop location
+      this.image.width / this.maxFramesInImage, // crop location, width / number of frames
+      this.image.height, // crop location
+      this.position.x,
+      this.position.y,
+      (this.image.width / this.maxFramesInImage) * this.scale,
+      this.image.height * this.scale
+    );
   }
 
   update() {
     this.draw();
+    this.framesElapsed++;
+
+    if (this.framesElapsed % this.framesHold === 0) {
+      if (this.currentFrame < this.maxFramesInImage - 1) {
+        this.currentFrame++;
+      } else {
+        this.currentFrame = 0;
+      }
+    }
   }
 }
 
