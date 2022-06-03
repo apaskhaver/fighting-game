@@ -1,0 +1,93 @@
+class Sprite {
+  constructor({ position }) {
+    this.position = position;
+    this.height = 150;
+    this.width = 50;
+  }
+
+  draw() {}
+
+  update() {
+    this.draw();
+  }
+}
+
+class Fighter {
+  // take in all params as 1 obj and destructures
+  constructor({ position, velocity, color = "red", offset }) {
+    this.position = position;
+    this.velocity = velocity;
+    this.height = 150;
+    this.width = 50;
+    this.lastKeyPressed = "";
+    this.attackBox = {
+      // attack box position doesn't follow player, values left as assigned initially
+      // must update in update()
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+      },
+      offset, // shorthand syntax for offset: offset, setting our offset to param offset
+      width: 100,
+      height: 50,
+    };
+    this.color = color;
+    this.isAttacking = false;
+    this.health = 100;
+  }
+
+  draw() {
+    // color for rect to draw
+    canvasContext.fillStyle = this.color;
+
+    // dimensions and coors
+    canvasContext.fillRect(
+      (x = this.position.x),
+      (y = this.position.y),
+      (w = this.width),
+      (h = this.height)
+    );
+
+    if (this.isAttacking) {
+      // attack box
+      canvasContext.fillStyle = "green";
+      canvasContext.fillRect(
+        (x = this.attackBox.position.x),
+        (y = this.attackBox.position.y),
+        (w = this.attackBox.width),
+        (h = this.attackBox.height)
+      );
+    }
+  }
+
+  update() {
+    this.draw();
+    this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+    this.attackBox.position.y = this.position.y;
+
+    // move left by adjusting position x by velocity x
+    this.position.x += this.velocity.x;
+
+    // make sprite fall by adding its velocity to its position
+    // due to gravity, velocity increases exponentially
+    this.position.y += this.velocity.y;
+
+    // stops falling when sprite's feet are at bottom of canvas
+    if (this.position.y + this.height + this.velocity.y >= canvas.height) {
+      this.velocity.y = 0;
+    } else {
+      // make sprite fall faster by adding gravity so long as
+      // sprite is not at bottom of canvas
+      this.velocity.y += gravity;
+    }
+  }
+
+  attack() {
+    this.isAttacking = true;
+
+    // attack cooldown of 100 ms
+    setTimeout(() => {
+      this.isAttacking = false;
+    }, 100);
+  }
+}
