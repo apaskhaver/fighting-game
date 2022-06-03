@@ -15,6 +15,8 @@ class Sprite {
     this.scale = scale;
     this.maxFramesInImage = maxFramesInImage;
     this.currentFrame = currentFrame;
+    this.framesElapsed = 0;
+    this.framesHold = 10;
   }
 
   draw() {
@@ -33,10 +35,14 @@ class Sprite {
 
   update() {
     this.draw();
-    if (this.currentFrame < this.maxFramesInImage - 1) {
-      this.currentFrame++;
-    } else {
-      this.currentFrame = 0;
+    this.framesElapsed++;
+
+    if (this.framesElapsed % this.framesHold === 0) {
+      if (this.currentFrame < this.maxFramesInImage - 1) {
+        this.currentFrame++;
+      } else {
+        this.currentFrame = 0;
+      }
     }
   }
 }
