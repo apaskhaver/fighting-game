@@ -8,7 +8,9 @@ class Sprite {
     this.image.src = imageSource;
   }
 
-  draw() {}
+  draw() {
+    canvasContext.drawImage(this.image, this.position.x, this.position.y);
+  }
 
   update() {
     this.draw();
