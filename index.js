@@ -54,6 +54,11 @@ const player = new Fighter({
   imageSource: "./img/samuraiMack/Idle.png",
   maxFramesInImage: 8,
   scale: 2,
+
+  offset: {
+    x: 100,
+    y: 93,
+  },
 });
 
 const enemy = new Fighter({
