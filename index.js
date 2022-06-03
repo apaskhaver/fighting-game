@@ -15,87 +15,15 @@ canvasContext.fillRect(
 
 const gravity = 0.7;
 
-class Sprite {
-  // take in all params as 1 obj and destructures
-  constructor({ position, velocity, color = "red", offset }) {
-    this.position = position;
-    this.velocity = velocity;
-    this.height = 150;
-    this.width = 50;
-    this.lastKeyPressed = "";
-    this.attackBox = {
-      // attack box position doesn't follow player, values left as assigned initially
-      // must update in update()
-      position: {
-        x: this.position.x,
-        y: this.position.y,
-      },
-      offset, // shorthand syntax for offset: offset, setting our offset to param offset
-      width: 100,
-      height: 50,
-    };
-    this.color = color;
-    this.isAttacking = false;
-    this.health = 100;
-  }
+const background = new Sprite({
+  position: {
+    x: 0,
+    y: 0,
+  },
+  imageSource: "./img/background.png",
+});
 
-  draw() {
-    // color for rect to draw
-    canvasContext.fillStyle = this.color;
-
-    // dimensions and coors
-    canvasContext.fillRect(
-      (x = this.position.x),
-      (y = this.position.y),
-      (w = this.width),
-      (h = this.height)
-    );
-
-    if (this.isAttacking) {
-      // attack box
-      canvasContext.fillStyle = "green";
-      canvasContext.fillRect(
-        (x = this.attackBox.position.x),
-        (y = this.attackBox.position.y),
-        (w = this.attackBox.width),
-        (h = this.attackBox.height)
-      );
-    }
-  }
-
-  update() {
-    this.draw();
-    this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-    this.attackBox.position.y = this.position.y;
-
-    // move left by adjusting position x by velocity x
-    this.position.x += this.velocity.x;
-
-    // make sprite fall by adding its velocity to its position
-    // due to gravity, velocity increases exponentially
-    this.position.y += this.velocity.y;
-
-    // stops falling when sprite's feet are at bottom of canvas
-    if (this.position.y + this.height + this.velocity.y >= canvas.height) {
-      this.velocity.y = 0;
-    } else {
-      // make sprite fall faster by adding gravity so long as
-      // sprite is not at bottom of canvas
-      this.velocity.y += gravity;
-    }
-  }
-
-  attack() {
-    this.isAttacking = true;
-
-    // attack cooldown of 100 ms
-    setTimeout(() => {
-      this.isAttacking = false;
-    }, 100);
-  }
-}
-
-const player = new Sprite({
+const player = new Fighter({
   position: {
     x: 0,
     y: 0,
@@ -113,7 +41,7 @@ const player = new Sprite({
   },
 });
 
-const enemy = new Sprite({
+const enemy = new Fighter({
   position: {
     x: 400,
     y: 100,
@@ -155,49 +83,6 @@ const keys = {
   },
 };
 
-function rectangularCollision({ attacker, beingHit }) {
-  return (
-    attacker.attackBox.position.x + attacker.attackBox.width >=
-      beingHit.position.x &&
-    attacker.attackBox.position.x <= beingHit.position.x + beingHit.width &&
-    attacker.attackBox.position.y + attacker.attackBox.height >=
-      beingHit.position.y &&
-    attacker.attackBox.position.y <= beingHit.position.y + beingHit.height
-  );
-}
-
-function displayGameOverText({ player, enemy, timerID }) {
-  // stop timer
-  clearTimeout(timerID);
-
-  // need to change display from none to flex for the div to render in index.html
-  document.querySelector("#displayGameOverText").style.display = "flex";
-
-  if (player.health === enemy.health) {
-    document.querySelector("#displayGameOverText").innerHTML = "Tie!";
-  } else if (player.health > enemy.health) {
-    document.querySelector("#displayGameOverText").innerHTML = "Player 1 Wins!";
-  } else if (enemy.health > player.health) {
-    document.querySelector("#displayGameOverText").innerHTML = "Player 2 Wins!";
-  }
-}
-let timer = 60;
-let timerID = 0;
-
-function decreaseTimer() {
-  // setTimeOut keeps calling the function w/ a second pause
-  if (timer > 0) {
-    timerID = setTimeout(decreaseTimer, 1000);
-    timer--;
-    document.querySelector("#timer").innerHTML = timer;
-  }
-
-  // game over
-  if (timer === 0) {
-    displayGameOverText({ player: player, enemy: enemy, timerID: timerID });
-  }
-}
-
 decreaseTimer();
 
 // what to do in every frame of animation loop
@@ -214,6 +99,8 @@ function animate() {
     (h = canvas.height)
   );
 
+  // want background to render first so it doesn't cover players
+  background.update();
   player.update();
   enemy.update();
 
