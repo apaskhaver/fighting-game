@@ -15,6 +15,14 @@ canvasContext.fillRect(
 
 const gravity = 0.7;
 
+const background = new Sprite({
+  position: {
+    x: 0,
+    y: 0,
+  },
+  imageSource: "./img/background.png",
+});
+
 const player = new Fighter({
   position: {
     x: 0,
@@ -134,6 +142,8 @@ function animate() {
     (h = canvas.height)
   );
 
+  // want background to render first so it doesn't cover players
+  background.update();
   player.update();
   enemy.update();
 
