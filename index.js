@@ -153,6 +153,8 @@ function animate() {
     player.image = player.sprites.run.image;
   } else if (keys.d.pressed && player.lastKeyPressed === "d") {
     player.velocity.x = 4;
+    // change image to running
+    player.image = player.sprites.run.image;
   }
 
   // enemy movement
