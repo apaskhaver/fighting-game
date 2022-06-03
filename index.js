@@ -51,6 +51,9 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
+  imageSource: "./img/samuraiMack/Idle.png",
+  maxFramesInImage: 8,
+  scale: 2,
 });
 
 const enemy = new Fighter({
@@ -70,6 +73,9 @@ const enemy = new Fighter({
   },
 
   color: "blue",
+  imageSource: "./img/kenji/Idle.png",
+  maxFramesInImage: 4,
+  scale: 2,
 });
 
 console.log(player);
