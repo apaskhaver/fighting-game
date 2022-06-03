@@ -1,8 +1,11 @@
 class Sprite {
-  constructor({ position }) {
+  constructor({ position, imageSource }) {
     this.position = position;
     this.height = 150;
     this.width = 50;
+    // creates a new HTML image inside the JS property this.image
+    this.image = new Image();
+    this.image.src = imageSource;
   }
 
   draw() {}
