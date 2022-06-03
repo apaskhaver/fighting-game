@@ -1,15 +1,22 @@
 class Sprite {
-  constructor({ position, imageSource }) {
+  constructor({ position, imageSource, scale = 1 }) {
     this.position = position;
     this.height = 150;
     this.width = 50;
     // creates a new HTML image inside the JS property this.image
     this.image = new Image();
     this.image.src = imageSource;
+    this.scale = scale;
   }
 
   draw() {
-    canvasContext.drawImage(this.image, this.position.x, this.position.y);
+    canvasContext.drawImage(
+      this.image,
+      this.position.x,
+      this.position.y,
+      this.image.width * this.scale,
+      this.image.height * this.scale
+    );
   }
 
   update() {
