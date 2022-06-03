@@ -1,11 +1,5 @@
 class Sprite {
-  constructor({
-    position,
-    imageSource,
-    scale = 1,
-    maxFramesInImage = 1,
-    currentFrame = 0,
-  }) {
+  constructor({ position, imageSource, scale = 1, maxFramesInImage = 1 }) {
     this.position = position;
     this.height = 150;
     this.width = 50;
@@ -14,9 +8,9 @@ class Sprite {
     this.image.src = imageSource;
     this.scale = scale;
     this.maxFramesInImage = maxFramesInImage;
-    this.currentFrame = currentFrame;
     this.framesElapsed = 0;
     this.framesHold = 10;
+    this.currentFrame = 0;
   }
 
   draw() {
@@ -47,10 +41,18 @@ class Sprite {
   }
 }
 
-class Fighter {
+class Fighter extends Sprite {
   // take in all params as 1 obj and destructures
-  constructor({ position, velocity, color = "red", offset }) {
-    this.position = position;
+  constructor({
+    position,
+    velocity,
+    color = "red",
+    offset,
+    imageSource,
+    scale = 1,
+    maxFramesInImage = 1,
+  }) {
+    super({ position, imageSource, scale, maxFramesInImage });
     this.velocity = velocity;
     this.height = 150;
     this.width = 50;
@@ -69,30 +71,9 @@ class Fighter {
     this.color = color;
     this.isAttacking = false;
     this.health = 100;
-  }
-
-  draw() {
-    // color for rect to draw
-    canvasContext.fillStyle = this.color;
-
-    // dimensions and coors
-    canvasContext.fillRect(
-      (x = this.position.x),
-      (y = this.position.y),
-      (w = this.width),
-      (h = this.height)
-    );
-
-    if (this.isAttacking) {
-      // attack box
-      canvasContext.fillStyle = "green";
-      canvasContext.fillRect(
-        (x = this.attackBox.position.x),
-        (y = this.attackBox.position.y),
-        (w = this.attackBox.width),
-        (h = this.attackBox.height)
-      );
-    }
+    this.framesElapsed = 0;
+    this.framesHold = 10;
+    this.currentFrame = 0;
   }
 
   update() {
