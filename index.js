@@ -146,6 +146,8 @@ function animate() {
   // player movement
   if (keys.a.pressed && player.lastKeyPressed === "a") {
     player.velocity.x = -4;
+    // change image
+    player.image = player.sprites.run.image;
   } else if (keys.d.pressed && player.lastKeyPressed === "d") {
     player.velocity.x = 4;
   }
