@@ -144,9 +144,12 @@ function animate() {
   enemy.velocity.x = 0;
 
   // player movement
+  // return image to idle if key not pressed
+  player.image = player.sprites.idle.image;
+
   if (keys.a.pressed && player.lastKeyPressed === "a") {
     player.velocity.x = -4;
-    // change image
+    // change image to running
     player.image = player.sprites.run.image;
   } else if (keys.d.pressed && player.lastKeyPressed === "d") {
     player.velocity.x = 4;
