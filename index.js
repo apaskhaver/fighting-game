@@ -15,7 +15,7 @@ canvasContext.fillRect(
 
 const gravity = 0.7;
 
-const player = new Sprite({
+const player = new Fighter({
   position: {
     x: 0,
     y: 0,
@@ -33,7 +33,7 @@ const player = new Sprite({
   },
 });
 
-const enemy = new Sprite({
+const enemy = new Fighter({
   position: {
     x: 400,
     y: 100,
