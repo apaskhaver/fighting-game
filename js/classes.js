@@ -112,6 +112,7 @@ class Fighter extends Sprite {
     // stops falling when sprite's feet are above bottom of canvas
     if (this.position.y + this.height + this.velocity.y >= canvas.height - 96) {
       this.velocity.y = 0;
+      this.position.y = 330;
     } else {
       // make sprite fall faster by adding gravity so long as
       // sprite is not at bottom of canvas
