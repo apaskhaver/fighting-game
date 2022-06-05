@@ -133,14 +133,20 @@ class Fighter extends Sprite {
       case "idle":
         if (this.image !== this.sprites.idle.image) {
           this.image = player.sprites.idle.image;
+          this.maxFramesInImage = this.sprites.idle.maxFramesInImage;
         }
         break;
       case "run":
         if (this.image !== this.sprites.run.image) {
           this.image = player.sprites.run.image;
+          this.maxFramesInImage = this.sprites.run.maxFramesInImage;
         }
         break;
       case "jump":
+        if (this.image !== this.sprites.jump.image) {
+          this.image = this.sprites.jump.image;
+          this.maxFramesInImage = this.sprites.jump.maxFramesInImage;
+        }
         break;
     }
   }
