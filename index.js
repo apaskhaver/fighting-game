@@ -51,6 +51,37 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
+  imageSource: "./img/samuraiMack/Idle.png",
+  maxFramesInImage: 8,
+  scale: 2,
+
+  offset: {
+    x: 100,
+    y: 93,
+  },
+
+  sprites: {
+    idle: {
+      imageSource: "./img/samuraiMack/Idle.png",
+      maxFramesInImage: 8,
+    },
+    run: {
+      imageSource: "./img/samuraiMack/Run.png",
+      maxFramesInImage: 8,
+    },
+    jump: {
+      imageSource: "./img/samuraiMack/Jump.png",
+      maxFramesInImage: 2,
+    },
+    fall: {
+      imageSource: "./img/samuraiMack/Fall.png",
+      maxFramesInImage: 2,
+    },
+    attack1: {
+      imageSource: "./img/samuraiMack/Attack1.png",
+      maxFramesInImage: 6,
+    },
+  },
 });
 
 const enemy = new Fighter({
@@ -70,6 +101,9 @@ const enemy = new Fighter({
   },
 
   color: "blue",
+  imageSource: "./img/kenji/Idle.png",
+  maxFramesInImage: 4,
+  scale: 2,
 });
 
 console.log(player);
@@ -124,8 +158,21 @@ function animate() {
   // player movement
   if (keys.a.pressed && player.lastKeyPressed === "a") {
     player.velocity.x = -4;
+    player.switchSprite("run");
   } else if (keys.d.pressed && player.lastKeyPressed === "d") {
     player.velocity.x = 4;
+    player.switchSprite("run");
+  } else {
+    // return image to idle if key not pressed
+    player.switchSprite("idle");
+  }
+
+  // jumping means in the air, velocity < 0
+  if (player.velocity.y < 0) {
+    player.switchSprite("jump");
+  } else if (player.velocity.y > 0) {
+    // falling means moving downwards speedily, so velocity > 0
+    player.switchSprite("fall");
   }
 
   // enemy movement
