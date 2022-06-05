@@ -136,6 +136,9 @@ class Fighter extends Sprite {
         }
         break;
       case "run":
+        if (this.image !== this.sprites.run.image) {
+          this.image = player.sprites.run.image;
+        }
         break;
       case "jump":
         break;
