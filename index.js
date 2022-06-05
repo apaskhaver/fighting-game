@@ -161,6 +161,12 @@ function animate() {
     player.image = player.sprites.run.image;
   }
 
+  // jumping means in the air, falling, velocity < 0
+  if (player.velocity.y < 0) {
+    player.image = player.sprites.jump.image;
+    player.maxFramesInImage = player.sprites.jump.maxFramesInImage;
+  }
+
   // enemy movement
   if (keys.ArrowLeft.pressed && enemy.lastKeyPressed === "ArrowLeft") {
     enemy.velocity.x = -4;
