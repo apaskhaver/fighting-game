@@ -100,10 +100,37 @@ const enemy = new Fighter({
     y: 0,
   },
 
-  color: "blue",
   imageSource: "./img/kenji/Idle.png",
   maxFramesInImage: 4,
   scale: 2,
+
+  offset: {
+    x: 100,
+    y: 105,
+  },
+
+  sprites: {
+    idle: {
+      imageSource: "./img/kenji/Idle.png",
+      maxFramesInImage: 4,
+    },
+    run: {
+      imageSource: "./img/kenji/Run.png",
+      maxFramesInImage: 8,
+    },
+    jump: {
+      imageSource: "./img/kenji/Jump.png",
+      maxFramesInImage: 2,
+    },
+    fall: {
+      imageSource: "./img/kenji/Fall.png",
+      maxFramesInImage: 2,
+    },
+    attack1: {
+      imageSource: "./img/kenji/Attack1.png",
+      maxFramesInImage: 4,
+    },
+  },
 });
 
 console.log(player);
@@ -178,8 +205,19 @@ function animate() {
   // enemy movement
   if (keys.ArrowLeft.pressed && enemy.lastKeyPressed === "ArrowLeft") {
     enemy.velocity.x = -4;
+    enemy.switchSprite("run");
   } else if (keys.ArrowRight.pressed && enemy.lastKeyPressed === "ArrowRight") {
     enemy.velocity.x = 4;
+    enemy.switchSprite("run");
+  } else {
+    enemy.switchSprite("idle");
+  }
+
+  // enemy jumping and falling
+  if (enemy.velocity.y < 0) {
+    enemy.switchSprite("jump");
+  } else if (enemy.velocity.y > 0) {
+    enemy.switchSprite("fall");
   }
 
   // detect for collisions and attack state
