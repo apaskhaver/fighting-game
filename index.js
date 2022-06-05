@@ -148,15 +148,15 @@ function animate() {
   enemy.velocity.x = 0;
 
   // player movement
-  // return image to idle if key not pressed
-  player.switchSprite("idle");
-
   if (keys.a.pressed && player.lastKeyPressed === "a") {
     player.velocity.x = -4;
     player.switchSprite("run");
   } else if (keys.d.pressed && player.lastKeyPressed === "d") {
     player.velocity.x = 4;
     player.switchSprite("run");
+  } else {
+    // return image to idle if key not pressed
+    player.switchSprite("idle");
   }
 
   // jumping means in the air, falling, velocity < 0
