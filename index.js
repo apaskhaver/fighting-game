@@ -77,6 +77,10 @@ const player = new Fighter({
       imageSource: "./img/samuraiMack/Fall.png",
       maxFramesInImage: 2,
     },
+    attack1: {
+      imageSource: "./img/samuraiMack/Attack1.png",
+      maxFramesInImage: 6,
+    },
   },
 });
 
