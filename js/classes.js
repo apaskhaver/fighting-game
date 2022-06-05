@@ -83,7 +83,7 @@ class Fighter extends Sprite {
     this.isAttacking = false;
     this.health = 100;
     this.framesElapsed = 0;
-    this.framesHold = 10;
+    this.framesHold = 7;
     this.currentFrame = 0;
     this.sprites = sprites;
 
