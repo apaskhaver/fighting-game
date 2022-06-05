@@ -153,8 +153,7 @@ function animate() {
 
   if (keys.a.pressed && player.lastKeyPressed === "a") {
     player.velocity.x = -4;
-    // change image to running
-    player.image = player.sprites.run.image;
+    player.switchSprite("run");
   } else if (keys.d.pressed && player.lastKeyPressed === "d") {
     player.velocity.x = 4;
     // change image to running
