@@ -156,8 +156,7 @@ function animate() {
     player.switchSprite("run");
   } else if (keys.d.pressed && player.lastKeyPressed === "d") {
     player.velocity.x = 4;
-    // change image to running
-    player.image = player.sprites.run.image;
+    player.switchSprite("run");
   }
 
   // jumping means in the air, falling, velocity < 0
