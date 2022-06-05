@@ -149,7 +149,7 @@ function animate() {
 
   // player movement
   // return image to idle if key not pressed
-  player.image = player.sprites.idle.image;
+  player.switchSprite("idle");
 
   if (keys.a.pressed && player.lastKeyPressed === "a") {
     player.velocity.x = -4;
