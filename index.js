@@ -161,8 +161,7 @@ function animate() {
 
   // jumping means in the air, falling, velocity < 0
   if (player.velocity.y < 0) {
-    player.image = player.sprites.jump.image;
-    player.maxFramesInImage = player.sprites.jump.maxFramesInImage;
+    player.switchSprite("jump");
   }
 
   // enemy movement
