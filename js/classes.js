@@ -131,6 +131,11 @@ class Fighter extends Sprite {
   }
 
   switchSprite(sprite) {
+    // attack overrides all other animations
+    if (this.image === this.sprites.attack1.image) {
+      return;
+    }
+
     switch (sprite) {
       case "idle":
         if (this.image !== this.sprites.idle.image) {
