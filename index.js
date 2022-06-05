@@ -112,7 +112,7 @@ const enemy = new Fighter({
   sprites: {
     idle: {
       imageSource: "./img/kenji/Idle.png",
-      maxFramesInImage: 8,
+      maxFramesInImage: 4,
     },
     run: {
       imageSource: "./img/kenji/Run.png",
@@ -128,7 +128,7 @@ const enemy = new Fighter({
     },
     attack1: {
       imageSource: "./img/kenji/Attack1.png",
-      maxFramesInImage: 6,
+      maxFramesInImage: 4,
     },
   },
 });
