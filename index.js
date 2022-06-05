@@ -100,10 +100,37 @@ const enemy = new Fighter({
     y: 0,
   },
 
-  color: "blue",
   imageSource: "./img/kenji/Idle.png",
   maxFramesInImage: 4,
   scale: 2,
+
+  offset: {
+    x: 100,
+    y: 105,
+  },
+
+  sprites: {
+    idle: {
+      imageSource: "./img/kenji/Idle.png",
+      maxFramesInImage: 8,
+    },
+    run: {
+      imageSource: "./img/kenji/Run.png",
+      maxFramesInImage: 8,
+    },
+    jump: {
+      imageSource: "./img/kenji/Jump.png",
+      maxFramesInImage: 2,
+    },
+    fall: {
+      imageSource: "./img/kenji/Fall.png",
+      maxFramesInImage: 2,
+    },
+    attack1: {
+      imageSource: "./img/kenji/Attack1.png",
+      maxFramesInImage: 6,
+    },
+  },
 });
 
 console.log(player);
