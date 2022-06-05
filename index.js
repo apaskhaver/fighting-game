@@ -163,9 +163,12 @@ function animate() {
     player.switchSprite("idle");
   }
 
-  // jumping means in the air, falling, velocity < 0
+  // jumping means in the air, velocity < 0
   if (player.velocity.y < 0) {
     player.switchSprite("jump");
+  } else if (player.velocity.y > 0) {
+    // falling means moving downwards speedily, so velocity > 0
+    player.switchSprite("fall");
   }
 
   // enemy movement
