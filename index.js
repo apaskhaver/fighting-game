@@ -205,8 +205,19 @@ function animate() {
   // enemy movement
   if (keys.ArrowLeft.pressed && enemy.lastKeyPressed === "ArrowLeft") {
     enemy.velocity.x = -4;
+    enemy.switchSprite("run");
   } else if (keys.ArrowRight.pressed && enemy.lastKeyPressed === "ArrowRight") {
     enemy.velocity.x = 4;
+    enemy.switchSprite("run");
+  } else {
+    enemy.switchSprite("idle");
+  }
+
+  // enemy jumping and falling
+  if (enemy.velocity.y < 0) {
+    enemy.switchSprite("jump");
+  } else if (enemy.velocity.y > 0) {
+    enemy.switchSprite("fall");
   }
 
   // detect for collisions and attack state
