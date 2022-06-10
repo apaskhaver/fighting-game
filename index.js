@@ -84,7 +84,7 @@ const player = new Fighter({
   },
   attackBox: {
     offset: {
-      x: 50,
+      x: 150,
       y: 0,
     },
     width: 100,
