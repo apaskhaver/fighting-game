@@ -62,6 +62,7 @@ class Fighter extends Sprite {
     maxFramesInImage = 1,
     offset = { x: 0, y: 0 },
     sprites,
+    attackBox = { offset: {}, width: undefined, height: undefined },
   }) {
     super({ position, imageSource, scale, maxFramesInImage, offset });
     this.velocity = velocity;
@@ -75,9 +76,9 @@ class Fighter extends Sprite {
         x: this.position.x,
         y: this.position.y,
       },
-      offset, // shorthand syntax for offset: offset, setting our offset to param offset
-      width: 100,
-      height: 50,
+      offset: attackBox.offset,
+      width: attackBox.width,
+      height: attackBox.height,
     };
     this.color = color;
     this.isAttacking = false;
@@ -100,7 +101,15 @@ class Fighter extends Sprite {
     this.animateFrame();
 
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-    this.attackBox.position.y = this.position.y;
+    this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
+
+    // draw attack box
+    // canvasContext.fillRect(
+    //   this.attackBox.position.x,
+    //   this.attackBox.position.y,
+    //   this.attackBox.width,
+    //   this.attackBox.height
+    // );
 
     // move left by adjusting position x by velocity x
     this.position.x += this.velocity.x;
@@ -125,9 +134,9 @@ class Fighter extends Sprite {
     this.isAttacking = true;
 
     // attack cooldown of 100 ms
-    setTimeout(() => {
-      this.isAttacking = false;
-    }, 100);
+    // setTimeout(() => {
+    //   this.isAttacking = false;
+    // }, 100);
   }
 
   switchSprite(sprite) {
