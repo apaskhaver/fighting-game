@@ -139,6 +139,11 @@ class Fighter extends Sprite {
     // }, 100);
   }
 
+  takeHit() {
+    this.switchSprite("takeHit");
+    this.health -= 20;
+  }
+
   switchSprite(sprite) {
     // attack overrides all other animations
     if (
