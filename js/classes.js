@@ -133,9 +133,9 @@ class Fighter extends Sprite {
     this.isAttacking = true;
 
     // attack cooldown of 100 ms
-    setTimeout(() => {
-      this.isAttacking = false;
-    }, 100);
+    // setTimeout(() => {
+    //   this.isAttacking = false;
+    // }, 100);
   }
 
   switchSprite(sprite) {
