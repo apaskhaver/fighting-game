@@ -249,7 +249,6 @@ function animate() {
     enemy.health -= 20;
     // health rendered as 80%, 60%, 40% ... of whole bar
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
-    console.log("Boom!");
   }
 
   if (
@@ -262,7 +261,6 @@ function animate() {
     enemy.isAttacking = false;
     player.health -= 20;
     document.querySelector("#playerHealth").style.width = player.health + "%";
-    console.log("Blast!");
   }
 
   // end game based on health
