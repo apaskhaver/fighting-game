@@ -138,6 +138,10 @@ const enemy = new Fighter({
       imageSource: "./img/kenji/Attack1.png",
       maxFramesInImage: 4,
     },
+    takeHit: {
+      imageSource: "./img/kenji/TakeHit.png",
+      maxFramesInImage: 3,
+    },
   },
   attackBox: {
     offset: {
