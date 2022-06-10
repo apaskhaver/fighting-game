@@ -240,7 +240,7 @@ function animate() {
     enemy.switchSprite("fall");
   }
 
-  // detect for collisions and attack state
+  // detect for collisions and attack state & enemy gets hit
   if (
     rectangularCollision({
       attacker: player,
@@ -249,6 +249,7 @@ function animate() {
     player.isAttacking &&
     player.currentFrame === 4
   ) {
+    enemy.takeHit();
     player.isAttacking = false;
     enemy.health -= 20;
     // health rendered as 80%, 60%, 40% ... of whole bar
