@@ -251,6 +251,11 @@ function animate() {
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
   }
 
+  // if player misses
+  if (player.isAttacking && player.currentFrame === 4) {
+    player.isAttacking = false;
+  }
+
   if (
     rectangularCollision({
       attacker: enemy,
