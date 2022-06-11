@@ -268,7 +268,11 @@ function animate() {
     enemy.takeHit();
     player.isAttacking = false;
     // health rendered as 80%, 60%, 40% ... of whole bar
-    document.querySelector("#enemyHealth").style.width = enemy.health + "%";
+    // document.querySelector("#enemyHealth").style.width = enemy.health + "%";
+    // element to animate, what styles of the element you want to animate and how
+    gsap.to("#enemyHealth", {
+      width: enemy.health + "%",
+    });
   }
 
   // if player misses
