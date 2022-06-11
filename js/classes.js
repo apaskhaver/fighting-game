@@ -153,6 +153,14 @@ class Fighter extends Sprite {
       return;
     }
 
+    // taking hit overrides all other animations
+    if (
+      this.image === this.sprites.takeHit.image &&
+      this.currentFrame < this.sprites.takeHit.maxFramesInImage - 1
+    ) {
+      return;
+    }
+
     switch (sprite) {
       case "idle":
         if (this.image !== this.sprites.idle.image) {
