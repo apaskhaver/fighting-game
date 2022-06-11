@@ -81,6 +81,10 @@ const player = new Fighter({
       imageSource: "./img/samuraiMack/Attack1.png",
       maxFramesInImage: 6,
     },
+    takeHit: {
+      imageSource: "./img/samuraiMack/TakeHitWhiteSilhouette.png",
+      maxFramesInImage: 4,
+    },
   },
   attackBox: {
     offset: {
