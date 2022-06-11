@@ -207,6 +207,10 @@ function animate() {
   // want background to render first so it doesn't cover players
   background.update();
   shop.update();
+  // r, g, b, opacity
+  // makes background slightly opaque so fighters stand out
+  canvasContext.fillStyle = "rgba(255, 255, 255, 0.15)";
+  canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   player.update();
   enemy.update();
 
@@ -264,7 +268,11 @@ function animate() {
     enemy.takeHit();
     player.isAttacking = false;
     // health rendered as 80%, 60%, 40% ... of whole bar
-    document.querySelector("#enemyHealth").style.width = enemy.health + "%";
+    // document.querySelector("#enemyHealth").style.width = enemy.health + "%";
+    // element to animate, what styles of the element you want to animate and how
+    gsap.to("#enemyHealth", {
+      width: enemy.health + "%",
+    });
   }
 
   // if player misses
@@ -282,7 +290,10 @@ function animate() {
   ) {
     player.takeHit();
     enemy.isAttacking = false;
-    document.querySelector("#playerHealth").style.width = player.health + "%";
+    // document.querySelector("#playerHealth").style.width = player.health + "%";
+    gsap.to("#playerHealth", {
+      width: player.health + "%",
+    });
   }
 
   // if enemy misses
