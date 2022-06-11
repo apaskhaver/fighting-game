@@ -273,8 +273,8 @@ function animate() {
     enemy.isAttacking &&
     enemy.currentFrame === 2
   ) {
+    player.takeHit();
     enemy.isAttacking = false;
-    player.health -= 20;
     document.querySelector("#playerHealth").style.width = player.health + "%";
   }
 
