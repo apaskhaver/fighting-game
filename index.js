@@ -81,6 +81,10 @@ const player = new Fighter({
       imageSource: "./img/samuraiMack/Attack1.png",
       maxFramesInImage: 6,
     },
+    takeHit: {
+      imageSource: "./img/samuraiMack/TakeHitWhiteSilhouette.png",
+      maxFramesInImage: 4,
+    },
   },
   attackBox: {
     offset: {
@@ -137,6 +141,10 @@ const enemy = new Fighter({
     attack1: {
       imageSource: "./img/kenji/Attack1.png",
       maxFramesInImage: 4,
+    },
+    takeHit: {
+      imageSource: "./img/kenji/TakeHit.png",
+      maxFramesInImage: 3,
     },
   },
   attackBox: {
@@ -236,7 +244,7 @@ function animate() {
     enemy.switchSprite("fall");
   }
 
-  // detect for collisions and attack state
+  // detect for collisions and attack state & enemy gets hit
   if (
     rectangularCollision({
       attacker: player,
@@ -245,6 +253,7 @@ function animate() {
     player.isAttacking &&
     player.currentFrame === 4
   ) {
+    enemy.takeHit();
     player.isAttacking = false;
     enemy.health -= 20;
     // health rendered as 80%, 60%, 40% ... of whole bar
@@ -264,8 +273,8 @@ function animate() {
     enemy.isAttacking &&
     enemy.currentFrame === 2
   ) {
+    player.takeHit();
     enemy.isAttacking = false;
-    player.health -= 20;
     document.querySelector("#playerHealth").style.width = player.health + "%";
   }
 
