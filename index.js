@@ -290,7 +290,10 @@ function animate() {
   ) {
     player.takeHit();
     enemy.isAttacking = false;
-    document.querySelector("#playerHealth").style.width = player.health + "%";
+    // document.querySelector("#playerHealth").style.width = player.health + "%";
+    gsap.to("#playerHealth", {
+      width: player.health + "%",
+    });
   }
 
   // if enemy misses
