@@ -204,6 +204,13 @@ class Fighter extends Sprite {
           this.currentFrame = 0;
         }
         break;
+      case "death":
+        if (this.image !== this.sprites.death.image) {
+          this.image = this.sprites.death.image;
+          this.maxFramesInImage = this.sprites.death.maxFramesInImage;
+          this.currentFrame = 0;
+        }
+        break;
     }
   }
 }
