@@ -263,7 +263,6 @@ function animate() {
   ) {
     enemy.takeHit();
     player.isAttacking = false;
-    enemy.health -= 20;
     // health rendered as 80%, 60%, 40% ... of whole bar
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
   }
