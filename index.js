@@ -207,6 +207,10 @@ function animate() {
   // want background to render first so it doesn't cover players
   background.update();
   shop.update();
+  // r, g, b, opacity
+  // makes background slightly opaque so fighters stand out
+  canvasContext.fillStyle = "rgba(255, 255, 255, 0.15)";
+  canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   player.update();
   enemy.update();
 
