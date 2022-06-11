@@ -85,6 +85,10 @@ const player = new Fighter({
       imageSource: "./img/samuraiMack/TakeHitWhiteSilhouette.png",
       maxFramesInImage: 4,
     },
+    death: {
+      imageSource: "./img/samuraiMack/Death.png",
+      maxFramesInImage: 6,
+    },
   },
   attackBox: {
     offset: {
@@ -145,6 +149,10 @@ const enemy = new Fighter({
     takeHit: {
       imageSource: "./img/kenji/TakeHit.png",
       maxFramesInImage: 3,
+    },
+    death: {
+      imageSource: "./img/kenji/Death.png",
+      maxFramesInImage: 7,
     },
   },
   attackBox: {
@@ -255,7 +263,6 @@ function animate() {
   ) {
     enemy.takeHit();
     player.isAttacking = false;
-    enemy.health -= 20;
     // health rendered as 80%, 60%, 40% ... of whole bar
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
   }
@@ -293,38 +300,44 @@ animate();
 
 // listen for key being pressed down
 window.addEventListener("keydown", (event) => {
-  switch (event.key) {
-    // player keys
-    case "d":
-      keys.d.pressed = true;
-      player.lastKeyPressed = "d";
-      break;
-    case "a":
-      keys.a.pressed = true;
-      player.lastKeyPressed = "a";
-      break;
-    case "w":
-      player.velocity.y = -20;
-      break;
-    case " ":
-      player.attack();
-      break;
+  if (!player.isDead) {
+    switch (event.key) {
+      // player keys
+      case "d":
+        keys.d.pressed = true;
+        player.lastKeyPressed = "d";
+        break;
+      case "a":
+        keys.a.pressed = true;
+        player.lastKeyPressed = "a";
+        break;
+      case "w":
+        player.velocity.y = -20;
+        break;
+      case " ":
+        player.attack();
+        break;
+    }
+  }
 
-    // enemy keys
-    case "ArrowRight":
-      keys.ArrowRight.pressed = true;
-      enemy.lastKeyPressed = "ArrowRight";
-      break;
-    case "ArrowLeft":
-      keys.ArrowLeft.pressed = true;
-      enemy.lastKeyPressed = "ArrowLeft";
-      break;
-    case "ArrowUp":
-      enemy.velocity.y = -20;
-      break;
-    case "ArrowDown":
-      enemy.attack();
-      break;
+  if (!enemy.isDead) {
+    switch (event.key) {
+      // enemy keys
+      case "ArrowRight":
+        keys.ArrowRight.pressed = true;
+        enemy.lastKeyPressed = "ArrowRight";
+        break;
+      case "ArrowLeft":
+        keys.ArrowLeft.pressed = true;
+        enemy.lastKeyPressed = "ArrowLeft";
+        break;
+      case "ArrowUp":
+        enemy.velocity.y = -20;
+        break;
+      case "ArrowDown":
+        enemy.attack();
+        break;
+    }
   }
 });
 
